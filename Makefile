@@ -89,5 +89,5 @@ clean:
 	@echo Cleanup complete!
 
 run: all
-	./$(OUTPUTMAIN)
+	./$(OUTPUTMAIN) src/$(dir)/
 	@echo Executing 'run: all' complete!
