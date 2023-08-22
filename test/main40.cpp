@@ -116,6 +116,7 @@ int main(int argc, char *argv[])
     ourShader.setInt("texture2", 1);
 
     float factor = 0.0;
+    
     glm::mat4 trans = glm::mat4(1.0f);
     trans = glm::rotate(trans, glm::radians(45.0f), glm::vec3(0.0f, 0.0f, 1.0f));
     trans = glm::scale(trans, glm::vec3(0.5f, 0.5f, 0.5f));
