@@ -2,7 +2,7 @@
 #define BOX_GROMETRY
 
 #include <geometry/BufferGeometry.h>
-
+//几何生成类
 using namespace std;
 
 class BoxGeometry : public BufferGeometry

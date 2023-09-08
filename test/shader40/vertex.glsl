@@ -1,34 +1,24 @@
 #version 330 core
-layout(location = 0) in vec3 aPos;
-layout(location = 1) in vec3 aColor;
-layout(location = 2) in vec2 aTexCoord;
 
-out vec3 ourColor;
-out vec3 ourPos;
-out vec2 TexCoord;
+layout (location = 0) in vec3 Position;
+layout (location = 1) in vec3 Normal;
+layout (location = 2) in vec2 TexCoords;
+
+out vec3 outFragPos;
+out vec3 outNormal;
+out vec2 outTexCoords;
 
 uniform float factor;
-uniform mat4 transform;
 
-/**
-  * |  cos0  -sin0   0   0|    |x|    |x * cos0 - y * sin0|
-  * |  sin0   cos0   0   0|  * |y| =  |x * sin0 + y * cos0|
-  * |  0       0     1   0|    |z|    |         z         |
-  * |  0       0     0   1|    |w|    |         1         |
-  * 可以用矩阵来旋转坐标系统
-  */
-mat4 rotate3d(float _angle) 
+uniform mat4 view;
+uniform mat4 model;
+uniform mat4 projection;
+
+void main()
 {
-  return mat4(cos(_angle), -sin(_angle), 0.0f, 0.0f, sin(_angle), cos(_angle), 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
-}
-
-void main() {
-
-  // gl_Position = vec4(rotate3d(factor) * vec4(aPos, 1.0f));
-  gl_Position = transform * vec4(aPos, 1.0f);
-  gl_PointSize = 10.0f;
-
-  ourColor = aColor;
-  ourPos = aPos;
-  TexCoord = aTexCoord * 2.0;
+    gl_Position = projection * view * model * vec4(Position, 1.0f);
+    outFragPos = vec3(model * vec4(Position, 1.0));
+    //法线矩阵 解决不等比缩放，对法向量产生的影响
+    outNormal = mat3(transpose(inverse(model))) * Normal;
+    outTexCoords = TexCoords;
 }

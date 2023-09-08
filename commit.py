@@ -3,7 +3,7 @@ from git.repo import Repo
 from git.repo.fun import is_git_dir
 import datetime
 
-
+##格式化 shift + alt + F
 def commit(path):
     dirfile = os.path.abspath(path)
     repo = Repo(dirfile)

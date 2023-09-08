@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
     glEnable(GL_DEPTH_TEST);
 
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
-    Shader ourShader("./shader50/vertex.glsl", "./shader50/fragment.glsl");
+    Shader ourShader("./shader32/vertex.glsl", "./shader32/fragment.glsl");
 
     PlaneGeometry planeGeometry(1.0, 1.0, 1.0, 1.0);
     BoxGeometry boxGeometry(1.0, 1.0, 1.0);
